@@ -1,10 +1,14 @@
 package com;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -69,6 +73,29 @@ public class MyApp {
 		JComboBox<String> ct = new JComboBox<>(allCountry);
 		ct.setBounds(160,260,150,20);
 		
+		JButton submit = new JButton("submit");
+		submit.setBounds(160,290,150,20);
+		
+		
+		JMenuBar menu = new JMenuBar();
+		menu.setBounds(0,0,600,20);
+		
+		JMenu file = new JMenu("File");
+		JMenu edit = new JMenu("Edit");
+		JMenu source = new JMenu("Source");
+		JMenu help = new JMenu("Help");
+		menu.add(file);
+		menu.add(edit);
+		menu.add(source);
+		menu.add(help);
+		
+		JMenuItem open = new JMenuItem("Open");
+		JMenuItem save = new JMenuItem("Save");
+		JMenuItem saveas = new JMenuItem("Save As");
+		
+		file.add(open);
+		file.add(save);
+		file.add(saveas);
 		
 		frame.add(title);
 		frame.add(uname);
@@ -87,6 +114,8 @@ public class MyApp {
 		frame.add(c4);
 		frame.add(country);
 		frame.add(ct);
+		frame.add(submit);
+		frame.add(menu);
 		
 	}
 }

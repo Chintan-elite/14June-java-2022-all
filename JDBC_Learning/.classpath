@@ -7,5 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/New folder/Chintan_do not delete/Java/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="lib" path="D:/New folder/Chintan_do not delete/Java/rs2xml.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
