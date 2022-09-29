@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function validation() {
+
+		var fname = document.getElementById("fname").value;
+		var lname = document.getElementById("lname").value;
+		var email = document.getElementById("email").value;
+		var pass = document.getElementById("pass").value;
+		var cpass = document.getElementById("cpass").value;
+
+		var fnameExp = /^[a-zA-Z]+$/
+		
+		if (fname == "" || fname == null) {
+			document.getElementById("fnameErr").innerHTML = "first name should not be blank"
+		}
+		else if(!fnameExp.test(fname))
+		{
+			document.getElementById("fnameErr").innerHTML = "only char. allw"
+		}
+		else {
+			document.getElementById("fnameErr").innerHTML = ""
+		}
+
+		if (lname == "" || lname == null) {
+			document.getElementById("lnameError").innerHTML = "last name should not be blank"
+		} else {
+			document.getElementById("lnameError").innerHTML = ""
+		}
+
+		if (email == "" || email == null) {
+			document.getElementById("emailError").innerHTML = "email should not be blank"
+		} else {
+			document.getElementById("emailError").innerHTML = ""
+		}
+		
+		
+		if (pass == "" || pass == null) {
+			document.getElementById("passError").innerHTML = "password should not be blank"
+		}
+		else if(pass.length<5 || pass.length>15)
+		{
+			document.getElementById("passError").innerHTML = "password length shoule between 5 and 15"
+				
+		}
+		else {
+			document.getElementById("passError").innerHTML = ""
+		}
+		
+		if (pass != cpass) {
+			document.getElementById("cpassError").innerHTML = "password  and cpass should be same"
+		} else {
+			document.getElementById("cpassError").innerHTML = ""
+		}
+		
+		
+		
+		
+		
+
+	}
+</script>
+
+<style type="text/css">
+.err {
+	color: red;
+}
+</style>
+</head>
+<body>
+
+	<form action="">
+		<table>
+			<tr>
+				<td><label>First name</label></td>
+				<td><input type="text" name="fname" id="fname"
+					onkeyup="validation()"></td>
+				<td><span id="fnameErr" class="err"></span></td>
+			</tr>
+
+			<tr>
+				<td><label>Last name</label></td>
+				<td><input type="text" name="lname" id="lname"
+					onkeyup="validation()"></td>
+				<td><span id="lnameError" class="err"></span></td>
+			</tr>
+
+			<tr>
+				<td><label>Email</label></td>
+				<td><input type="text" name="email" onkeyup="validation()"
+					id="email"></td>
+				<td><span id="emailError" class="err"></span></td>
+
+			</tr>
+
+			<tr>
+				<td><label>Password</label></td>
+				<td><input type="text" name="pass" id="pass"
+					onkeyup="validation()"></td>
+				<td><span id="passError" class="err"></span></td>
+
+			</tr>
+
+			<tr>
+				<td><label>Confirm Password</label></td>
+				<td><input type="text" name="cpass" id="cpass"
+					onkeyup="validation()"></td>
+				<td><span id="cpassError" class="err"></span></td>
+
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="submit"></td>
+			</tr>
+
+		</table>
+	</form>
+</body>
+</html>
