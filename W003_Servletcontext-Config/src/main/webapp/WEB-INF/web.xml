@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>W003_Servletcontext-Config</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  
+  </welcome-file-list>
+  
+  <context-param>
+  <param-name>driver</param-name>
+  <param-value>com.oracle.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+  <param-name>url</param-name>
+  <param-value>jdbc:mysql://localhost:3306</param-value>
+  </context-param>
+  
+  <servlet>
+  <servlet-name>servlet1</servlet-name>
+  <servlet-class>com.Servlet1</servlet-class>
+  <init-param>
+  <param-name>path</param-name>
+  <param-value>d://demo</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>servlet1</servlet-name>
+   <url-pattern>/ser1</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>servlet2</servlet-name>
+  <servlet-class>com.Servlet2</servlet-class>
+  <init-param>
+  <param-name>path</param-name>
+  <param-value>C://demo</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>servlet2</servlet-name>
+   <url-pattern>/ser2</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</web-app>

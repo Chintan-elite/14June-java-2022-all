@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,9 +23,9 @@ public class LoginServlet extends HttpServlet
 		String uname = req.getParameter("uname");
 		String pass = req.getParameter("pass");
 		
-		
+		ServletContext cx = req.getServletContext();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(cx.getInitParameter("driver"));
 			Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3307/14june","root","root");
 		
 			PreparedStatement ps = cn.prepareStatement("select * from user where uname=? and pass=?");
