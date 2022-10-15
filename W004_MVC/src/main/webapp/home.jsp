@@ -7,6 +7,7 @@
 <title>Home</title>
 </head>
 <body>
-
+<h1>Welcome, ${msg}</h1>
+<h2><a href="display">Show All User</a></h2>
 </body>
 </html>

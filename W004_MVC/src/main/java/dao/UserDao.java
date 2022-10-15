@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.User;
 
@@ -63,6 +64,48 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return b;
+	}
+
+	public ArrayList<User> getAllUser() {
+		
+		ArrayList<User> al = new ArrayList<User>();
+		try {
+			PreparedStatement ps = cn.prepareStatement("select * from user");
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				User u = new User();
+				u.setId(rs.getInt(1));
+				u.setUname(rs.getString(2));
+				u.setEmail(rs.getString(3));
+				u.setPass(rs.getString(4));
+				
+				al.add(u);
+				
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return al;
+	}
+
+	public int deleteUser(int did) {
+		int i = 0;
+		try {
+			PreparedStatement ps = cn.prepareStatement("delete from user where id=?");
+			ps.setInt(1, did);
+			 i = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return i;
 	}
 	
 	
