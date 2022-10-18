@@ -11,42 +11,31 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDao;
 import model.User;
 
-@WebServlet("/reg")
-public class Registrationcontroller extends HttpServlet
+@WebServlet("/updateUser")
+public class UpdateUsercontroller extends HttpServlet
 {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		int uid = Integer.parseInt(req.getParameter("uid"));
 		String uname = req.getParameter("uname");
 		String email = req.getParameter("email");
 		String pass = req.getParameter("pass");
 		
 		User u = new User();
+		u.setId(uid);
 		u.setUname(uname);
 		u.setEmail(email);
 		u.setPass(pass);
 		
 		UserDao dao = new UserDao();
+		int i = dao.updateUser(u);
 		
-		boolean b =  dao.isEmailExist(u);
-		
-		if(b)
+		if(i>0)
 		{
-			req.setAttribute("err", "Email alredy Exist !!! !!!");
-			req.getRequestDispatcher("index.jsp").forward(req, resp);
-	
-		}
-		else
-		{
-			int i = dao.addUser(u);
-			if(i>0)
-			{
-				req.setAttribute("msg", "Registration success !!!");
-				req.getRequestDispatcher("index.jsp").forward(req, resp);
-			}
-		}
 		
-		
+			req.getRequestDispatcher("display").forward(req, resp);
+		}
 		
 	}
 }
