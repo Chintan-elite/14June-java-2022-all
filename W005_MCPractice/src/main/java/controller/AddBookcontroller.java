@@ -56,7 +56,6 @@ public class AddBookcontroller extends HttpServlet
 					req.setAttribute("data", dao.getallBook());
 					req.setAttribute("msg", "Book Update successfully");
 					req.getRequestDispatcher("index.jsp").forward(req, resp);
-
 				}
 			
 		}

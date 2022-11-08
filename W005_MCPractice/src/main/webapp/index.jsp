@@ -13,6 +13,16 @@
 
 </head>
 <body>
+	<%
+		String email =(String) session.getAttribute("email");
+		if(email ==  null)
+		{
+			request.setAttribute("msg", "Please login first");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			
+		}
+	
+	%>
 		<div class="container">
 		<div class="row">
 		<div class="col-md-4">
@@ -36,6 +46,7 @@
 		</div>
 		<div class="col-md-8">
 		<h1 class="text-success">Book Details</h1>
+		<h2>Welcome , <%=email%> | <a href="logout">Logout</a></h2>
 		<table class="table">
 		<tr>
 		<th>Book Id</th>
