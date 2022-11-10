@@ -4,33 +4,34 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home</title>
+<title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 	<script type="text/javascript">
 	
 	$(document).ready(function(){
 		
-		
+		$.get("country",{},function(rt){
+			$("#country").html(rt);
+		})
 		
 	})
-	
-	function search()
+	function getState(cid)
 	{
-		var pname = $("#pname").val()
-		$.get("product",{pname:pname},function(rt){
-			//alert(rt)
-			$("#data").html(rt )
+		$.get("state",{cid:cid},function(rt){
+			$("#state").html(rt);
 		})
 	}
-	
 	</script>
-
-
 </head>
-
 <body>
-	<input type="text" name="pname" id="pname" onkeyup="search()">
-	<div id="data"></div>
+		
+		<select id="country" onchange="getState(value)">
+		<option>---Select country---</option>
+		</select>
+		
+		<select id="state">
+		<option>---Select state---</option>
+		</select>
 </body>
 </html>
