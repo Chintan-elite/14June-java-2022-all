@@ -17,6 +17,7 @@
 	$(document).ready(function(){
 		
 		getData();
+		$("#sbtn2").hide();
 		
 	})
 	
@@ -44,12 +45,70 @@
 			for(var i=0;i<data.length;i++)
 			{
 				var user = data[i];
-				row = row+"<tr><td>"+user.id+"</td><td>"+user.uname+"</td><td>"+user.email+"</td><td>"+user.pass+"</td><td>"+user.dob+"</td><td>"+user.country+"</td></tr>"
+				row = row+"<tr><td>"+user.id+"</td><td>"+user.uname+"</td><td>"+user.email+"</td><td>"+user.pass+"</td><td>"+user.dob+"</td><td>"+user.country+"</td><td><button class='btn btn-danger bg-danger' onclick='deleteUser("+user.id+")'>Delete</button></td><td><button class='btn btn-primary bg-primary' onclick='getById("+user.id+")'>Update</button></td></tr>"
 			}
 			$("#table").html(row);
 		})
 	}
 	
+	function deleteUser(uid)
+	{
+		$.post("update",{uid},function(rt){
+			alert(rt)
+			getData()
+		})
+	}
+	
+	function getById(uid)
+	{
+		$.get("update",{uid},function(rt){
+			
+			var data = JSON.parse(rt);
+			
+			$("#uid").val(data.id);
+			$("#uname").val(data.uname);
+			$("#email").val(data.email);
+			$("#pass").val(data.pass);
+			$("#dob").val(data.dob);
+			$("#country").val(data.country);
+			
+			$("#sbtn2").show();
+			$("#sbtn1").hide();
+		})
+	}
+	
+	function updateUser()
+	{
+		var uid = $("#uid").val();
+		var uname = $("#uname").val();
+		var email = $("#email").val();
+		var pass = $("#pass").val();
+		var dob = $("#dob").val();
+		var country = $("#country").val();
+		
+		$.get("reg",{uid,uname,email,pass,dob,country},function(rt){
+			$("#msg").html(rt);
+			getData()
+			$("#sbtn2").hide();
+			$("#sbtn1").show();
+		})
+	}
+	
+	function search(value)
+	{
+		$.get("search",{value},function(rt){
+			
+			const data =  JSON.parse(rt);
+			var row="";
+			row=row+"<tr><th>Id</th><th>Uname</th><th>Email</th><th>Pass</th><th>DOB</th><th>Counrtry</th></tr>"
+			for(var i=0;i<data.length;i++)
+			{
+				var user = data[i];
+				row = row+"<tr><td>"+user.id+"</td><td>"+user.uname+"</td><td>"+user.email+"</td><td>"+user.pass+"</td><td>"+user.dob+"</td><td>"+user.country+"</td><td><button class='btn btn-danger bg-danger' onclick='deleteUser("+user.id+")'>Delete</button></td><td><button class='btn btn-primary bg-primary' onclick='getById("+user.id+")'>Update</button></td></tr>"
+			}
+			$("#table").html(row);
+		})
+	}
 	
 	</script>
 </head>
@@ -62,6 +121,7 @@
 		<span class="text-success" id="msg"></span>
 		<span class="text-danger">${err}</span>
 		
+		<input type="hidden" name="uid" id="uid">
 		<div class="form-group">
 		<label>Username</label>
 		<input type="text" name="uname" id="uname" class="form-control" > 
@@ -95,12 +155,13 @@
 		
 		<br>
 		
-		<button class="btn btn-success" id="sbtn" onclick="addUser()">Submit</button>
+		<button class="btn btn-success" id="sbtn1" onclick="addUser()">Submit</button>
+		<button class="btn btn-success" id="sbtn2" onclick="updateUser()">Update</button>
 	
 		</div>
 		<div class="col-md-8">
 		<h1 class="text-success">Book Details</h1>
-		
+		<input type="text" name="search" id="search" class="form-control" onkeyup="search(value)">
 		<table class="table" id="table">
 		
 		

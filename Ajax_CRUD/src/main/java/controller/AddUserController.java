@@ -30,9 +30,27 @@ public class AddUserController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter pw  =response.getWriter();
+		User u = new User();
+		u.setId(Integer.parseInt(req.getParameter("uid")));
+		u.setUname(req.getParameter("uname"));
+		u.setEmail(req.getParameter("email"));
+		u.setPass(req.getParameter("pass"));
+		u.setDob(req.getParameter("dob"));
+		u.setCountry(req.getParameter("country"));
+		
+		UserDao dao = new UserDao();
+		int i = dao.updateUser(u);
+		
+		if(i>0)
+		{
+			pw.append("User Updated successfully");
+		}
+		
+		
+	
 	}
 
 	/**
