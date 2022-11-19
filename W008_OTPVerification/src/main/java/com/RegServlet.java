@@ -23,7 +23,7 @@ public class RegServlet extends HttpServlet {
 		String email =request.getParameter("email");
 		String pass = request.getParameter("pass");
 		
-		if(email.equals("admin@gmail.com")&&pass.equals("admin"))
+		if(email.equals("vaghanip303@gmail.com")&&pass.equals("admin"))
 		{
 			Random rd = new Random();
 			int otp =  rd.nextInt(9999);	

@@ -7,6 +7,7 @@
 <title>OTP verification</title>
 </head>
 <body>
+<span>${err}</span>
 <form action="otp">
 <input type="text" name="otp" placeholder="enter otp">
 <input type="submit">

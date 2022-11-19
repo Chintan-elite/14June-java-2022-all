@@ -30,7 +30,7 @@ public class OTPVerify extends HttpServlet {
 		else
 		{
 			request.setAttribute("err", "Invalid otp");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("otpverify.jsp").forward(request, response);
 
 		}
 		
