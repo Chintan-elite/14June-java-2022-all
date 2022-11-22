@@ -53,10 +53,18 @@
 	
 	function deleteUser(uid)
 	{
-		$.post("update",{uid},function(rt){
-			alert(rt)
-			getData()
-		})
+		if(confirm("do u really want to delete?")==true)
+		{
+			$.post("update",{uid},function(rt){
+				alert(rt)
+				getData()
+			})
+		}
+		else
+		{
+			alert("you have canclled")
+		}
+		
 	}
 	
 	function getById(uid)
