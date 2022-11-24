@@ -16,7 +16,7 @@ public class UserDao {
 	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			cn = DriverManager.getConnection("jdbc:mysql://localhost:3307/14june","root","root");
+			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/14june","root","root");
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
