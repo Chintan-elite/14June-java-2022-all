@@ -2,15 +2,14 @@ package model;
 
 import jakarta.persistence.*;
 
-
 @Entity
-@Table(name="student")
+@Table(name="std")
 public class Student {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	int id=0;
+	int id;
 	
 	@Column(name="name")
 	String name;
@@ -18,21 +17,9 @@ public class Student {
 	@Column(name="email")
 	String email;
 	
-	@Column(name="password")
-	String password;
-
-	public Student() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	public Student(int id, String name, String email, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="sdid")
+	StudentDetails studentDetails;
 
 	public int getId() {
 		return id;
@@ -58,13 +45,14 @@ public class Student {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public StudentDetails getStudentDetails() {
+		return studentDetails;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setStudentDetails(StudentDetails studentDetails) {
+		this.studentDetails = studentDetails;
 	}
+	
 	
 	
 }

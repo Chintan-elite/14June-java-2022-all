@@ -48,5 +48,6 @@ public class StudentDao {
 			Transaction tx = s.beginTransaction();
 			Student std = s.get(Student.class, id);
 			s.delete(std);
+			tx.commit();
 		}
 }
