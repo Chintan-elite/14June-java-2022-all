@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 import model.Student;
 import model.StudentDetails;
 
-public class AddData {
+public class Deletedata {
 	public static void main(String[] args) {
 		
 		SessionFactory sf = new Configuration()
@@ -17,20 +17,14 @@ public class AddData {
 							.addAnnotatedClass(StudentDetails.class)
 							.buildSessionFactory();
 		
-		StudentDetails sd = new StudentDetails();
-		sd.setAddress("surat");
 		
 		
-		Student std = new Student();
-		std.setName("Rahul");
-		std.setEmail("rahul@gmail.com");
-		std.setStudentDetails(sd);
+		
 		
 		Session s  =sf.openSession();
 		Transaction tx = s.beginTransaction();
-		//s.save(sd);
-		s.save(std);
-		
+		Student st = s.load(Student.class, 1);
+		s.delete(st);
 		tx.commit();
 		
 		
