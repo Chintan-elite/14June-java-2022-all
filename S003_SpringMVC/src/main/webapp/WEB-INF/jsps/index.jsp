@@ -11,6 +11,7 @@
 <h1>Registration</h1>
 
 	<form:form action="adduser" method="get" modelAttribute="user">
+	<form:hidden path="id"/>
 	<form:label path="name">Username</form:label>
 	<form:input path="name"/>
 	<form:label path="email">Email</form:label>
@@ -18,8 +19,9 @@
 	<form:label path="pass">Password</form:label>
 	<form:input path="pass"/>
 	<input type="submit">
+	
 	</form:form>	
-
+	<a href="view">Display all user</a>
 
 </body>
 </html>
