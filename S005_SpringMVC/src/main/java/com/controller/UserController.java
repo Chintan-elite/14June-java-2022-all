@@ -42,6 +42,8 @@ public class UserController {
 	@RequestMapping("/adduser")
 	public ModelAndView addUser(@Valid @ModelAttribute("user") User u, BindingResult rs)
 	{
+		int id = u.getId();
+		System.out.println(id);
 		ModelAndView model = new ModelAndView();
 		User user = new User();
 		model.addObject("user",user);
@@ -56,7 +58,14 @@ public class UserController {
 		{
 			System.out.println("test3");
 			userService.addUser(u);
-			model.addObject("msg","Registration successfully !!!");
+			if(id>0)
+			{
+				model.addObject("msg","Updated successfully !!!");
+			}
+			else
+			{
+				model.addObject("msg","Registration successfully !!!");
+			}
 			model.setViewName("index");
 		}
 		return model;
