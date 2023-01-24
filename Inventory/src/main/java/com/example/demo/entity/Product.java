@@ -17,6 +17,21 @@ import lombok.Setter;
 @Table(name="product")
 public class Product {
 	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	int pId;
+	String pname;
+	int qty;
+	
+	
+	
+	public int getpId() {
+		return pId;
+	}
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
 	public String getPname() {
 		return pname;
 	}
@@ -28,27 +43,6 @@ public class Product {
 	}
 	public void setQty(int qty) {
 		this.qty = qty;
-	}
-	public List<Purchase> getP() {
-		return p;
-	}
-	public void setP(List<Purchase> p) {
-		this.p = p;
-	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	int pId;
-	String pname;
-	int qty;
-	
-	@OneToMany(mappedBy = "p")
-	List<Purchase> p;
-	
-	public int getpId() {
-		return pId;
-	}
-	public void setpId(int pId) {
-		this.pId = pId;
 	}
 	
 	

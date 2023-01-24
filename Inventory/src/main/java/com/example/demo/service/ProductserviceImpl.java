@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +16,15 @@ public class ProductserviceImpl implements ProductService {
 	Productrepo repo;
 	
 	@Override
-	public void addProduct(Product p) {
-		 repo.save(p);
+	public Product addProduct(Product p) {
+		 return repo.save(p);
 		
 	}
 
 	@Override
-	public ArrayList<Product> viewAllProduct() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> viewAllProduct() {
+		
+		return repo.findAll();
 	}
 
 	@Override
@@ -34,13 +35,14 @@ public class ProductserviceImpl implements ProductService {
 
 	@Override
 	public void updateProduct(Product p, int id) {
-		// TODO Auto-generated method stub
 		
+		p.setpId(id);
+		repo.save(p);
 	}
 
 	@Override
 	public void deleteProduct(int id) {
-		// TODO Auto-generated method stub
+		repo.deleteById(id);
 		
 	}
 

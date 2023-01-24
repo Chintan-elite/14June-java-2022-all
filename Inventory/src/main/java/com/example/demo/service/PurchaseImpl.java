@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,15 @@ public class PurchaseImpl implements Purchaseservice{
 	PurchaseRepo repo;
 	
 	@Override
-	public void addPurchase(Purchase p) {
+	public Purchase addPurchase(Purchase p) {
 		
-		repo.save(p);
+		return  repo.save(p);
+	}
+
+	@Override
+	public List<Purchase> getallpurchase() {
+		// TODO Auto-generated method stub
+		return repo.findAll();
 	}
 
 }
